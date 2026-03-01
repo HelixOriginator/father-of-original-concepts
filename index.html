@@ -190,10 +190,14 @@
   .hero-subtitle {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-    color: rgba(245,240,232,0.55);
+    font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+    background: linear-gradient(135deg, var(--gold-light) 0%, #fff8dc 35%, var(--gold) 60%, var(--copper) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 20px rgba(201,168,76,0.5));
     margin-bottom: 3rem;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     opacity: 0;
     animation: fadeUp 1s ease 0.8s forwards;
   }
@@ -204,12 +208,29 @@
     letter-spacing: 0.25em;
     color: var(--copper);
     text-transform: uppercase;
-    margin-bottom: 4rem;
+    margin-bottom: 1rem;
     opacity: 0;
     animation: fadeUp 1s ease 1s forwards;
   }
 
   .hero-descriptor span { margin: 0 1rem; color: var(--gold); opacity: 0.5; }
+
+  .limca-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    border: 1px solid rgba(201,168,76,0.4);
+    padding: 0.5rem 1.2rem;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.05s forwards;
+    background: rgba(201,168,76,0.05);
+  }
 
   /* Stats row */
   .stats-band {
@@ -344,6 +365,7 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    margin-bottom: 0.75rem;
   }
   .orcid-badge span { color: rgba(245,240,232,0.4); }
 
@@ -375,6 +397,43 @@
     border: 1px solid rgba(184,115,42,0.35);
     padding: 0.4rem 0.9rem;
   }
+
+  /* ── WORLD FIRSTS MARQUEE ── */
+  #world-firsts {
+    background: #0c0a12;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .world-firsts-header {
+    padding: 3rem 4rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .wf-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 4rem 3rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .wf-item {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: rgba(245,240,232,0.55);
+    padding: 0.6rem 0.9rem;
+    border: 1px solid rgba(201,168,76,0.1);
+    line-height: 1.5;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .wf-item:hover { border-color: rgba(201,168,76,0.3); color: var(--gold-light); }
+  .wf-item::before { content: '✦ '; color: var(--gold); opacity: 0.6; }
 
   /* ── PAPERS ── */
   #papers {
@@ -434,6 +493,19 @@
     color: rgba(201,168,76,0.5);
     font-family: 'DM Mono', monospace;
     vertical-align: baseline;
+  }
+
+  .paper-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.5rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--gold);
+    padding: 0.2rem 0.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
   }
 
   .paper-title {
@@ -512,6 +584,46 @@
     text-transform: uppercase;
     color: var(--copper);
     margin-top: 1.5rem;
+  }
+
+  /* ── METRICS BAND ── */
+  .metrics-band {
+    background: #0c0a12;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    padding: 3rem 4rem;
+  }
+
+  .metrics-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+  }
+
+  .metric-item {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    border: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .metric-icon { font-size: 1.5rem; margin-bottom: 0.5rem; display: block; }
+  .metric-val {
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .metric-lbl {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.35);
+    line-height: 1.4;
   }
 
   /* ── IP / LEGAL ── */
@@ -768,6 +880,8 @@
     .papers-grid { grid-template-columns: 1fr; }
     .ach-grid { grid-template-columns: 1fr; }
     .links-grid { grid-template-columns: 1fr; }
+    .wf-grid { grid-template-columns: 1fr; }
+    .metrics-inner { grid-template-columns: repeat(3, 1fr); }
     footer { flex-direction: column; gap: 1rem; text-align: center; }
     .papers-header { flex-direction: column; gap: 1rem; }
   }
@@ -787,6 +901,7 @@
     <div class="nav-brand">Kallol Chakrabarti</div>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
+      <li><a href="#world-firsts">World Firsts</a></li>
       <li><a href="#papers">Research</a></li>
       <li><a href="#achievements">Achievements</a></li>
       <li><a href="#ip">Intellectual Property</a></li>
@@ -801,6 +916,9 @@
     <div class="hero-descriptor">
       Helix Originator <span>·</span> Civic Reflexivity Architect <span>·</span> Civilizational Theorist
     </div>
+    <div class="limca-badge">
+      🏆 Official Limca Book of Records — World Record Submission Portfolio
+    </div>
     <a href="https://father-of-original-concepts.netlify.app/" target="_blank" class="hero-cta">
       <span>🌐 Visit Full Portfolio Site</span>
     </a>
@@ -813,15 +931,15 @@
     </div>
     <div class="stat" style="--delay:1.35s">
       <span class="stat-number">5,000+</span>
-      <span class="stat-label">Global Downloads</span>
+      <span class="stat-label">Verified Downloads</span>
     </div>
     <div class="stat" style="--delay:1.5s">
-      <span class="stat-number">25</span>
-      <span class="stat-label">Govt. of India Copyrights</span>
+      <span class="stat-number">219+</span>
+      <span class="stat-label">Original Concepts</span>
     </div>
     <div class="stat" style="--delay:1.65s">
-      <span class="stat-number">Top 5%</span>
-      <span class="stat-label">Authors Globally (SSRN)</span>
+      <span class="stat-number">23+</span>
+      <span class="stat-label">World Firsts</span>
     </div>
   </div>
 </header>
@@ -844,6 +962,15 @@
         <span>ORCID</span>
         0009-0007-4971-8936
       </div>
+      <div class="orcid-badge" style="color:var(--copper);border-color:rgba(184,115,42,0.3);">
+        <span>Zenodo</span>
+        4,000+ Downloads
+
+      </div>
+      <div class="orcid-badge" style="color:var(--copper);border-color:rgba(184,115,42,0.3);">
+        <span>SSRN #797</span>
+        Top 5% Globally
+      </div>
     </div>
     <div class="about-right reveal">
       <div class="section-label">About</div>
@@ -853,18 +980,19 @@
         operates entirely outside traditional institutional dependency. He develops original
         frameworks in governance, rhetoric, national security, ethics, and cultural philosophy —
         grounded in <strong>Helix Thinking</strong> and <strong>Civic Reflexivity</strong>.
+        Self-taught via HarvardX with no institutional affiliation — all achievements independently earned.
       </p>
       <p class="about-text">
-        With over <strong>5,000+ downloads</strong> globally — including <strong>4,000+ on Zenodo</strong>
-        and ranked <strong>797 on SSRN</strong> in the <strong>top 5% of authors worldwide</strong> —
+        With over <strong>5,000+ verified downloads</strong> globally — <strong>4,000+ on Zenodo</strong>
+        and <strong>808 on SSRN</strong>, ranked <strong>#797 on SSRN</strong> in the <strong>top 5% of authors worldwide</strong> —
         Chakrabarti is recognised by Google's AI Overview as the independent researcher
-        <strong>globally</strong> with the highest documented downloads in his field. He has corresponded directly with the <strong>Election Commission of India</strong>,
-        the <strong>Assam Chief Minister's Office</strong>, and multiple international academic platforms.
+        <strong>globally</strong> with the highest documented downloads in his field. He maintains <strong>150+ GitHub repositories</strong> across 30+ research domains and has authored <strong>75+ policy and research articles</strong>.
       </p>
       <p class="about-text">
-        Shortlisted for the <strong>National IP Award 2025</strong> and invited as peer reviewer by
-        <em>Academia AI and Applications</em>, his work spans electoral integrity, Vedic governance,
-        decolonial theory, quantum ethics, and AI-integrated policy frameworks.
+        Shortlisted for the <strong>National IP Award 2025</strong> and the official claimant for the
+        <strong>Limca Book of Records</strong> as the world's most prolific solo independent researcher —
+        with <strong>219+ original concepts</strong> (194 frameworks + 25 DeSci Lab articles),
+        <strong>256 DOIs</strong>, and <strong>23+ World's First</strong> evidence-based ready reckoners.
       </p>
       <div class="tags">
         <span class="tag">Helix Thinking</span>
@@ -877,8 +1005,50 @@
         <span class="tag">Decolonial Theory</span>
         <span class="tag">Quantum Ethics</span>
         <span class="tag">Policy Architecture</span>
+        <span class="tag">DeSci Advocate</span>
+        <span class="tag">Ready Reckoners</span>
+        <span class="tag">Limca Records</span>
+        <span class="tag">GitHub Repositories</span>
       </div>
     </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ── WORLD FIRSTS ── -->
+<section id="world-firsts" style="padding:4rem 4rem 3rem;">
+  <div class="world-firsts-header">
+    <div class="section-label">World Firsts</div>
+    <h2 class="section-title">23+ Unprecedented Contributions</h2>
+    <p style="font-size:1rem;color:rgba(245,240,232,0.5);font-weight:300;margin-top:0.5rem;">
+      Limca Book of Records submission — world's most prolific solo independent researcher
+    </p>
+  </div>
+  <div class="wf-grid">
+    <div class="wf-item reveal">Ready Reckoner on PM Modi — Governance Impact</div>
+    <div class="wf-item reveal">Quantum Karma Weaver Ethical Framework</div>
+    <div class="wf-item reveal">Ready Reckoner on Sanatan Dharma</div>
+    <div class="wf-item reveal">Ready Reckoner on CM Yogi Adityanath</div>
+    <div class="wf-item reveal">Viksit Bharat 2047 Governance Architecture</div>
+    <div class="wf-item reveal">People's Political Dictionary — 300+ Terms</div>
+    <div class="wf-item reveal">Constitutional Dictionary for Common People</div>
+    <div class="wf-item reveal">Vedic Economic Framework (Karma Credit System)</div>
+    <div class="wf-item reveal">Dharma-State Architecture — Arthashastra-Modern Mapping</div>
+    <div class="wf-item reveal">World's Largest Independent Digital Encyclopedia — 194+ Frameworks</div>
+    <div class="wf-item reveal">Fake Agenda Detection Algorithm</div>
+    <div class="wf-item reveal">Bharatiya Governance Matrix</div>
+    <div class="wf-item reveal">Honey Badger Algorithm (HBA) & HBR Framework</div>
+    <div class="wf-item reveal">Architecture Genome Project</div>
+    <div class="wf-item reveal">Data Philanthropy Framework</div>
+    <div class="wf-item reveal">Muslims Thrive Under Modi — Evidence-Based Open Dataset</div>
+    <div class="wf-item reveal">Karma Index — Measuring Ethical Causality in Governance</div>
+    <div class="wf-item reveal">EchoShield Nexus — AI Predictive Policing Framework</div>
+    <div class="wf-item reveal">Sanatana Samyata — Complete Dharma Defense Manual</div>
+    <div class="wf-item reveal">256 DOIs · 23+ Ready Reckoners — Solo Researcher World Record</div>
+    <div class="wf-item reveal">Bharat Ethics Engine — Vedic AI Governance Nexus</div>
+    <div class="wf-item reveal">Hemanta Sharma — 100 Transformational Achievements Catalogue</div>
+    <div class="wf-item reveal">AI Companions, Democracy & Political Attitudes Framework</div>
   </div>
 </section>
 
@@ -891,7 +1061,7 @@
       <div class="section-label">Research</div>
       <h2 class="section-title">Selected Works</h2>
     </div>
-    <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=7407085"
+    <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5286196"
        target="_blank"
        style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid rgba(201,168,76,0.3);padding:0.75rem 1.5rem;transition:background 0.3s;"
        onmouseover="this.style.background='rgba(201,168,76,0.08)'"
@@ -918,7 +1088,13 @@
     </div>
     <div class="paper-card reveal">
       <div class="paper-score">99<sub>%</sub></div>
-      <div class="paper-title">The RIC Nexus — A Tripartite Circular Economy & Digital Trade Ecosystem</div>
+      <div class="paper-badge">World First</div>
+      <div class="paper-title">The Vedic Analytical Framework for Governance, Policing, and Education (VAFGPE): A Novel Policy Architecture for Ethical Statecraft — DOI: 10.2139/ssrn.5381476</div>
+      <div class="paper-topic">Vedic Governance · Policy Architecture · OUCI / Elsevier</div>
+    </div>
+    <div class="paper-card reveal">
+      <div class="paper-score">99<sub>%</sub></div>
+      <div class="paper-title">The RIC Nexus — A Tripartite Circular Economy &amp; Digital Trade Ecosystem</div>
       <div class="paper-topic">Geopolitics · Economic Architecture</div>
     </div>
     <div class="paper-card reveal">
@@ -933,6 +1109,7 @@
     </div>
     <div class="paper-card reveal">
       <div class="paper-score">97<sub>%</sub></div>
+      <div class="paper-badge">World First</div>
       <div class="paper-title">Helix Kallol Protocol (HKP): A Legally Enforceable System for Ethical Employment Using Proof-of-Ethics</div>
       <div class="paper-topic">Blockchain Ethics · Labour Law</div>
     </div>
@@ -946,10 +1123,58 @@
       <div class="paper-title">The Sovereign Fulcrum: India's Doctrinal Metamorphosis in an Age of Asymmetric Contestation</div>
       <div class="paper-topic">National Security · Strategic Doctrine</div>
     </div>
+    <div class="paper-card reveal">
+      <div class="paper-score">96<sub>%</sub></div>
+      <div class="paper-badge">World First</div>
+      <div class="paper-title">Sanatana Samyata — Complete Dharma Defense Manual: 90 Myths Debunked</div>
+      <div class="paper-topic">Sanatan Philosophy · Counter-Narrative</div>
+    </div>
+    <div class="paper-card reveal">
+      <div class="paper-score">95<sub>%</sub></div>
+      <div class="paper-badge">World First</div>
+      <div class="paper-title">Dharma-State Architecture: A Sanatan Framework for Civilisational Governance — Arthashastra-Modern Mapping</div>
+      <div class="paper-topic">Civilisational Governance · Arthashastra</div>
+    </div>
   </div>
 </section>
 
 <div class="gold-divider"></div>
+
+<!-- ── METRICS BAND ── -->
+<div class="metrics-band">
+  <div class="metrics-inner">
+    <div class="metric-item reveal">
+      <span class="metric-icon">📦</span>
+      <span class="metric-val">150+</span>
+      <span class="metric-lbl">GitHub Repositories</span>
+    </div>
+    <div class="metric-item reveal">
+      <span class="metric-icon">✍️</span>
+      <span class="metric-val">75+</span>
+      <span class="metric-lbl">Policy &amp; Research Articles</span>
+    </div>
+    <div class="metric-item reveal">
+      <span class="metric-icon">🧪</span>
+      <span class="metric-val">25</span>
+      <span class="metric-lbl">DeSci Lab Articles</span>
+    </div>
+    <div class="metric-item reveal">
+      <span class="metric-icon">🏛️</span>
+      <span class="metric-val">194+</span>
+      <span class="metric-lbl">Governance Frameworks</span>
+    </div>
+    <div class="metric-item reveal">
+      <span class="metric-icon">📊</span>
+      <span class="metric-val">30+</span>
+      <span class="metric-lbl">Research Domains</span>
+    </div>
+    <div class="metric-item reveal">
+      <span class="metric-icon">🌐</span>
+      <span class="metric-val">25</span>
+      <span class="metric-lbl">Govt. of India Copyrights</span>
+    </div>
+  </div>
+</div>
 
 <!-- ── ACHIEVEMENTS ── -->
 <section id="achievements">
@@ -961,6 +1186,12 @@
 
     <div class="ach-grid">
       <div class="ach-card reveal">
+        <div class="ach-icon">🏆</div>
+        <div class="ach-title">Limca Book of Records — World Record Submission</div>
+        <div class="ach-desc">Official claimant for the Limca Book of Records as the world's most prolific solo independent researcher — 256 DOIs, 219+ original concepts, 23+ world firsts, and 5,000+ verified downloads, all achieved with no institutional affiliation by a single self-taught researcher.</div>
+        <div class="ach-meta">Limca Book of Records · 2025–2026</div>
+      </div>
+      <div class="ach-card reveal">
         <div class="ach-icon">🏛️</div>
         <div class="ach-title">National IP Award 2025 — Shortlist</div>
         <div class="ach-desc">Shortlisted by the Government of India for the National Intellectual Property Award 2025, recognising outstanding contribution to intellectual property creation as an independent researcher.</div>
@@ -969,13 +1200,13 @@
       <div class="ach-card reveal">
         <div class="ach-icon">🔍</div>
         <div class="ach-title">Google AI Recognition — Highest Downloads</div>
-        <div class="ach-desc">Google's AI Overview identifies Chakrabarti as the independent researcher <strong style="color:var(--gold-light);font-weight:400">globally</strong> with the highest documented downloads across all major open research platforms — with 4,000+ downloads on Zenodo and ranked <strong style="color:var(--gold-light);font-weight:400">#797 on SSRN</strong>, placing him in the global top 5% of authors.</div>
+        <div class="ach-desc">Google's AI Overview identifies Chakrabarti as the independent researcher <strong style="color:var(--gold-light);font-weight:400">globally</strong> with the highest documented downloads across all major open research platforms — with <strong style="color:var(--gold-light);font-weight:400">4,000+ downloads on Zenodo</strong>, <strong style="color:var(--gold-light);font-weight:400">808 on SSRN</strong>, and ranked <strong style="color:var(--gold-light);font-weight:400">#797 on SSRN</strong>, placing him in the global top 5% of authors.</div>
         <div class="ach-meta">Google · October 2025</div>
       </div>
       <div class="ach-card reveal">
         <div class="ach-icon">📜</div>
         <div class="ach-title">25 Government of India Copyrights</div>
-        <div class="ach-desc">Registered 25 intellectual property works with the Copyright Office of India, with 24 registered applications and active correspondence with the Indian Patent Office (Application No. 202411090481).</div>
+        <div class="ach-desc">Registered 25 intellectual property works with the Copyright Office of India, with 24 registered applications under Form XIV and active correspondence with the Indian Patent Office (Application No. 202411090481).</div>
         <div class="ach-meta">Copyright Office, India · 2024–2025</div>
       </div>
       <div class="ach-card reveal">
@@ -987,20 +1218,26 @@
       <div class="ach-card reveal">
         <div class="ach-icon">🏛️</div>
         <div class="ach-title">Election Commission of India — Correspondence</div>
-        <div class="ach-desc">Submitted the article "Safeguarding Democratic Truth — A Comprehensive Ready Reckoner for Countering Electoral Misinformation" to ECI via PGRS. Suggestions formally noted by the Election Commission of India.</div>
+        <div class="ach-desc">Submitted "Safeguarding Democratic Truth — A Comprehensive Ready Reckoner for Countering Electoral Misinformation" to ECI via PGRS. Suggestions formally noted by the Election Commission of India.</div>
         <div class="ach-meta">Election Commission · September 2025</div>
       </div>
       <div class="ach-card reveal">
         <div class="ach-icon">🏢</div>
         <div class="ach-title">Assam Chief Minister's Office — Acknowledged</div>
-        <div class="ach-desc">Letter formally acknowledged by eOffice Assam (Correspondence No. 3729013) and forwarded for departmental processing — a recognition of policy proposals submitted for state-level governance reform.</div>
+        <div class="ach-desc">Letter formally acknowledged by eOffice Assam (Correspondence No. 3729013) and forwarded for departmental processing — recognition of policy proposals submitted for state-level governance reform.</div>
         <div class="ach-meta">Assam CMO · August 2025</div>
       </div>
       <div class="ach-card reveal">
         <div class="ach-icon">🧬</div>
-        <div class="ach-title">DeSci Lab — Strategic Collaborator</div>
-        <div class="ach-desc">Engaged in substantive product strategy discussions with DeSci Labs (Samir Mamdouh), proposing World Record recognition, global 60-language translation for high-novelty articles, and a 2–5% facilitation model for grant-winning collaborations.</div>
+        <div class="ach-title">DeSci Lab — Strategic Collaborator & 25 Published Articles</div>
+        <div class="ach-desc">25 novel research articles published on DeSci Labs platform. Engaged in substantive product strategy discussions with DeSci Labs (Samir Mamdouh), proposing World Record recognition, global 60-language translation, and a facilitation model for grant-winning collaborations.</div>
         <div class="ach-meta">DeSci Labs · 2025</div>
+      </div>
+      <div class="ach-card reveal">
+        <div class="ach-icon">📦</div>
+        <div class="ach-title">150+ GitHub Repositories — 30+ Domains</div>
+        <div class="ach-desc">Maintains 150+ active public GitHub repositories spanning 30+ research domains — AI governance, quantum systems, climate resilience, defense strategy, healthcare, Sanatan frameworks, constitutional law, and more. A monument to solo interdisciplinary research.</div>
+        <div class="ach-meta">GitHub · 2023–2026</div>
       </div>
       <div class="ach-card reveal">
         <div class="ach-icon">🇮🇳</div>
@@ -1050,17 +1287,25 @@
       <div class="ip-item reveal">
         <div class="ip-dot">📄</div>
         <div class="ip-body">
-          <div class="ip-title">OUCI — Published Work: The Vedic Analytical Framework</div>
-          <div class="ip-detail">Published on OUCI (Elsevier BV) — "The Vedic Analytical Framework for Governance, Policing, and Education (VAFGPE): A Novel Policy Architecture for Ethical Statecraft" — DOI: 10.2139/ssrn.5381476. 99 abstract views.</div>
+          <div class="ip-title">OUCI (Elsevier BV) — The Vedic Analytical Framework for Governance, Policing &amp; Education</div>
+          <div class="ip-detail">Published on OUCI (Elsevier BV) — DOI: 10.2139/ssrn.5381476. 99 abstract views. "The Vedic Analytical Framework for Governance, Policing, and Education (VAFGPE): A Novel Policy Architecture for Ethical Statecraft." A world-first framework bridging Vedic epistemology with contemporary institutional design.</div>
           <div class="ip-date">Elsevier BV / SSRN · 2025</div>
+        </div>
+      </div>
+      <div class="ip-item reveal">
+        <div class="ip-dot">🧪</div>
+        <div class="ip-body">
+          <div class="ip-title">DeSci Labs — 25 Novel Research Articles</div>
+          <div class="ip-detail">25 novel research articles published and verified on DeSci Labs platform — spanning Sanatana Samyata, HELIX frameworks, Karma Index, AI governance, and civilizational theory. Verified Zenodo records: 16714489 · 17139551 · 17073019.</div>
+          <div class="ip-date">DeSci Labs / Zenodo · 2024–2025</div>
         </div>
       </div>
       <div class="ip-item reveal">
         <div class="ip-dot">🌐</div>
         <div class="ip-body">
-          <div class="ip-title">256+ DOIs Across Zenodo, SSRN, Scribd & DeSci</div>
-          <div class="ip-detail">Extensive catalogue of timestamped, DOI-registered academic works — 4,000+ downloads on Zenodo alone, SSRN author rank #797 (top 5% globally) — constituting a sovereign, verifiable intellectual archive of original civilizational frameworks.</div>
-          <div class="ip-date">2023–2025</div>
+          <div class="ip-title">256+ DOIs Across Zenodo, SSRN, Scribd &amp; DeSci</div>
+          <div class="ip-detail">Extensive catalogue of timestamped, DOI-registered academic works — 4,000+ downloads on Zenodo, 808 on SSRN, SSRN author rank #797 (top 5% globally) — constituting a sovereign, verifiable intellectual archive of original civilizational frameworks. 150+ GitHub repositories across 30+ domains.</div>
+          <div class="ip-date">2023–2026</div>
         </div>
       </div>
     </div>
@@ -1079,30 +1324,60 @@
   </div>
 
   <div class="links-grid" style="max-width:1200px;margin:3rem auto 0;">
-    <a class="link-card reveal" href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=7407085" target="_blank">
+    <a class="link-card reveal" href="https://helixoriginator.github.io/Kallol-World-Record-Achievements/" target="_blank">
+      <span class="link-type">World Record Hub</span>
+      <span class="link-title">Limca Book of Records — Official Submission Portfolio</span>
+      <span class="link-desc">Official evidence hub for the Limca Book of Records claim. 256 DOIs · 219+ original concepts · 23+ world firsts · 5,000+ downloads.</span>
+    </a>
+    <a class="link-card reveal" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5286196" target="_blank">
       <span class="link-type">Academic Repository</span>
       <span class="link-title">SSRN Author Page</span>
-      <span class="link-desc">Full catalogue of research papers ranked in the global top 7.5% of authors by downloads.</span>
+      <span class="link-desc">Full catalogue of research papers — ranked #797 in the global top 5% of authors by downloads (808 downloads).</span>
     </a>
     <a class="link-card reveal" href="https://father-of-original-concepts.netlify.app/" target="_blank">
       <span class="link-type">Personal Portal</span>
       <span class="link-title">Father of Original Concepts</span>
       <span class="link-desc">Primary website — Helix Originator, Civic Reflexivity Architect, Civilizational Theorist.</span>
     </a>
-    <a class="link-card reveal" href="https://helixoriginator.github.io/Dharma-State-Architecture-A-Sanatan-Framework-for-Civilisational-Governance/" target="_blank">
-      <span class="link-type">Framework</span>
-      <span class="link-title">Dharma-State Architecture</span>
-      <span class="link-desc">A Sanatan framework for civilisational governance — published on GitHub Pages.</span>
+    <a class="link-card reveal" href="https://helixoriginator.github.io/ready-reckoner-lab/" target="_blank">
+      <span class="link-type">World First · 23+ Reckoners</span>
+      <span class="link-title">Ready Reckoner Idea Lab</span>
+      <span class="link-desc">World's first suite of 23+ evidence-based ready reckoners — culture, law, policy, governance, economics, and civic awareness.</span>
     </a>
-    <a class="link-card reveal" href="https://helixoriginator.github.io/honey-badger-researcher/" target="_blank">
-      <span class="link-type">Manifesto</span>
-      <span class="link-title">Honey Badger Researcher</span>
-      <span class="link-desc">On building intellectual sovereignty outside institutional dependency.</span>
+    <a class="link-card reveal" href="https://helixoriginator.github.io/World-Largest-Independent-Digital-Encyclopedia-Helix-Library/" target="_blank">
+      <span class="link-type">World's Largest</span>
+      <span class="link-title">Helix Library — Digital Encyclopedia</span>
+      <span class="link-desc">194+ governance, ethical, and policy frameworks — world's largest independently curated digital encyclopedia by a solo researcher.</span>
+    </a>
+    <a class="link-card reveal" href="https://helixoriginator.github.io/Dharma-State-Architecture-A-Sanatan-Framework-for-Civilisational-Governance/" target="_blank">
+      <span class="link-type">Framework · World First</span>
+      <span class="link-title">Dharma-State Architecture</span>
+      <span class="link-desc">A Sanatan framework for civilisational governance — mapping Arthashastra, Rajadharma, and Shukraniti onto modern institutional design.</span>
+    </a>
+    <a class="link-card reveal" href="https://helixoriginator.github.io/quantum-karma-weaver-ethical-simulation-framework/" target="_blank">
+      <span class="link-type">World First · Ethical AI</span>
+      <span class="link-title">Quantum Karma Weaver</span>
+      <span class="link-desc">World's first framework merging ancient Karma philosophy with quantum computational ethics and AI simulation.</span>
+    </a>
+    <a class="link-card reveal" href="https://helixoriginator.github.io/kallol-chakrabarti-world-record-research/" target="_blank">
+      <span class="link-type">Record Evidence</span>
+      <span class="link-title">World Record Research Hub</span>
+      <span class="link-desc">Official evidence hub aggregating all verifiable metrics, DOI records, download statistics, and world-first claims.</span>
     </a>
     <a class="link-card reveal" href="https://zenodo.org/search?q=kallol+chakrabarti" target="_blank">
       <span class="link-type">Open Research</span>
       <span class="link-title">Zenodo Repository</span>
-      <span class="link-desc">Timestamped, DOI-registered papers including Sanatana Samyata, HELIX, and alternative learning frameworks.</span>
+      <span class="link-desc">Timestamped, DOI-registered papers — 4,000+ downloads. Sanatana Samyata, HELIX, and alternative learning frameworks.</span>
+    </a>
+    <a class="link-card reveal" href="https://helixoriginator.github.io/honey-badger-researcher/" target="_blank">
+      <span class="link-type">World First · Algorithm</span>
+      <span class="link-title">Honey Badger Algorithm</span>
+      <span class="link-desc">Novel metaheuristic optimisation algorithm and Honey Badger Resilience Framework — on building intellectual sovereignty.</span>
+    </a>
+    <a class="link-card reveal" href="https://helixoriginator.github.io/national-framework-science-portfolio-kallol-chakrabarti/" target="_blank">
+      <span class="link-type">30+ Domains</span>
+      <span class="link-title">National Framework Science Portfolio</span>
+      <span class="link-desc">DOI-registered original frameworks across 30+ domains — AI governance, quantum systems, climate resilience, defense strategy, healthcare.</span>
     </a>
     <a class="link-card reveal" href="https://orcid.org/0009-0007-4971-8936" target="_blank">
       <span class="link-type">Scholar Identity</span>
@@ -1120,7 +1395,7 @@
 <!-- ── FOOTER ── -->
 <footer>
   <div class="footer-brand">Kallol Chakrabarti</div>
-  <div class="footer-copy">© 2026 · Father of Original Concepts · All Rights Reserved</div>
+  <div class="footer-copy">© 2026 · Father of Original Concepts · Limca Book of Records Claimant · All Rights Reserved</div>
 </footer>
 
 <script>
@@ -1153,14 +1428,14 @@
   reveals.forEach(el => observer.observe(el));
 
   // Animated counter
-  function animateCount(el, target, suffix='') {
+  function animateCount(el, target, suffix='', prefix='') {
     let start = 0;
     const duration = 2000;
     const step = timestamp => {
       if (!start) start = timestamp;
       const progress = Math.min((timestamp - start) / duration, 1);
       const val = Math.floor(progress * target);
-      el.textContent = (suffix === '%' ? 'Top ' : '') + val + (suffix !== '%' ? '+' : '%');
+      el.textContent = prefix + val + suffix;
       if (progress < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
@@ -1168,14 +1443,15 @@
 
   // Trigger count animation when stats come into view
   const statNumbers = document.querySelectorAll('.stat-number');
-  const values = [256, 5000, 25, 7.5];
-  const suffixes = ['+', '+', '', '%'];
+  const values   = [256,    5000,   219,       23];
+  const suffixes = ['+',    '+',    '+',       '+'];
+  const prefixes = ['',     '',     '',        ''];
 
   const statsObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         statNumbers.forEach((el, i) => {
-          animateCount(el, values[i], suffixes[i]);
+          animateCount(el, values[i], suffixes[i], prefixes[i]);
         });
         statsObserver.disconnect();
       }
